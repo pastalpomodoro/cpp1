@@ -13,7 +13,7 @@ class Bureaucrat
     public:
         Bureaucrat(void);
         Bureaucrat(const Bureaucrat &copy);
-        Bureaucrat(int x);
+        Bureaucrat(int grade);
         Bureaucrat &operator=(const Bureaucrat &copy);
         ~Bureaucrat(void);
         std::string getName(void);

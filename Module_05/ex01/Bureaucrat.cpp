@@ -2,21 +2,21 @@
 
 Bureaucrat::Bureaucrat(void): _name("Lucie"), _grade(12)
 {
-    std::cout << "Bureaucrat default constructor called\n";
+    // std::cout << "Bureaucrat default constructor called\n";
 }
 Bureaucrat::Bureaucrat(const Bureaucrat &copy)
 {
-    std::cout << "Bureaucrat copy constructor called\n";
+    // std::cout << "Bureaucrat assignement constructor called\n";
     *this = copy;
 }
-Bureaucrat::Bureaucrat(int x): _name("Lucie")
+Bureaucrat::Bureaucrat(int grade): _name("Lucie")
 {
-    std::cout << "Bureaucrat copy constructor called\n";
-    this->_grade = x;
+    // std::cout << "Bureaucrat copy constructor called\n";
+    this->_grade = grade;
 }
 Bureaucrat::~Bureaucrat(void)
 {
-    std::cout << "Bureaucrat destructor called\n";
+    // std::cout << "Bureaucrat destructor called\n";
 }
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &copy)
 {
@@ -28,12 +28,12 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &copy)
 }
 std::string Bureaucrat::getName(void)
 {
-    std::cout << ", bureaucrat name: " << this->_name;
+    // std::cout << ", bureaucrat name: " << this->_name;
     return(this->_name);
 }
 int Bureaucrat::getGrade(void)
 {
-    std::cout << this->_name << ", bureaucrat grade " << this->_grade << ".\n";
+    // std::cout << this->_name << ", bureaucrat grade " << this->_grade << ".\n";
     return(this->_grade);
 }
 void Bureaucrat::incrementGrade(int x)

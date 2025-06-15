@@ -1,16 +1,18 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "ShrubberyCreationForm.hpp"
 
 int main(void)
 {
-    PresidentialPardonForm a("Luca");
-    RobotomyRequestForm b("Fererico");
-    ShrubberyCreationForm c("Alberto");
+    AForm form("Davide");
+    Bureaucrat b(11);
 
-    std::cout << a <<std::endl;
-    std::cout << b <<std::endl;
-    std::cout << c <<std::endl;
+    std::cout << form << std::endl;
+    try{
+        form.beSigned(b);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    std::cout << form << std::endl;
 }
