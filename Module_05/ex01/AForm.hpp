@@ -8,13 +8,14 @@ class AForm
     private:
         std::string _name;
         bool _signed;
-        const int _sign;
-        const int _exec;
+        int const _sign;
+        int const _exec;
     public:
         AForm(void);
         AForm(const AForm &copy);
         virtual ~AForm(void);
         AForm &operator=(const AForm &copy);
+        // void operator<<(const AForm &x);
         virtual void f() const = 0;
 };
 

@@ -5,9 +5,10 @@ FLAG=-Wall -Werror -Wextra -std=c++98
 
 SRC=main.cpp \
 	Bureaucrat.cpp \
+	AForm.cpp \
 	ShrubberyCreationForm.cpp \
 	RobotomyRequestForm.cpp \
-	PresidentialPardonForm.cpp
+	PresidentialPardonForm.cpp \
 
 OBJ=$(patsubst %.cpp, %.o,$(SRC))
 
