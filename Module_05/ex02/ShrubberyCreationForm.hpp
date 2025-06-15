@@ -8,8 +8,11 @@ class ShrubberyCreationForm : public AForm
     public:
         ShrubberyCreationForm(void);
         ShrubberyCreationForm(const ShrubberyCreationForm &copy);
+        ShrubberyCreationForm(std::string name);
         ~ShrubberyCreationForm(void);
         ShrubberyCreationForm &operator=(const ShrubberyCreationForm &copy);
+        void f() const;
 };
+std::ostream &operator<<(std::ostream &os, const ShrubberyCreationForm &p);
 
 #endif

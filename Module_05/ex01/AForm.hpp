@@ -13,10 +13,15 @@ class AForm
     public:
         AForm(void);
         AForm(const AForm &copy);
-        virtual ~AForm(void);
+        AForm(std::string name);
+        virtual ~AForm(void) = 0;
         AForm &operator=(const AForm &copy);
-        // void operator<<(const AForm &x);
+        std::string getName(void) const;
+        bool getIsSigned(void) const;
+        int getSign(void) const;
+        int getExec(void) const;
         virtual void f() const = 0;
 };
+
 
 #endif
