@@ -1,11 +1,14 @@
 
-NAME=ex01
+NAME=ex02
 CC=c++
 FLAG=-Wall -Werror -Wextra -std=c++98
 
 SRC=main.cpp \
 	Bureaucrat.cpp \
-	Form.cpp \
+	AForm.cpp \
+	PresidentialPardonForm.cpp \
+	RobotomyRequestForm.cpp \
+	ShrubberyCreationForm.cpp \
 
 OBJ=$(patsubst %.cpp, %.o,$(SRC))
 

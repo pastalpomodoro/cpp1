@@ -8,7 +8,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &copy) : AFor
 {
     *this = copy;
 }
-RobotomyRequestForm::RobotomyRequestForm(std::string name) : AForm(name)
+RobotomyRequestForm::RobotomyRequestForm(std::string name) : AForm(name, 72, 45)
 {
     ;
 }
@@ -24,7 +24,7 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &c
     return (*this);
 }
 
-void RobotomyRequestForm::f() const{;}
+void RobotomyRequestForm::f() {;}
 std::ostream &operator<<(std::ostream &os, const RobotomyRequestForm &p)
 {
     os << p.getName();

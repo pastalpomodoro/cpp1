@@ -8,7 +8,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &copy) 
 {
     *this = copy;
 }
-ShrubberyCreationForm::ShrubberyCreationForm(std::string name) : AForm(name)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string name) : AForm(name, 145, 137)
 {
     ;
 }
@@ -24,7 +24,7 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
     return (*this);
 }
 
-void ShrubberyCreationForm::f() const{;}
+void ShrubberyCreationForm::f(){;}
 
 std::ostream &operator<<(std::ostream &os, const ShrubberyCreationForm &p)
 {

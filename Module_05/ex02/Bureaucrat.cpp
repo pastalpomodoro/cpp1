@@ -49,10 +49,10 @@ void Bureaucrat::decrementGrade(int x)
         throw Bureaucrat::GradeTooLowException();
     this->_grade -= x;
 }
-void Bureaucrat::signForm(Form &form)
+void Bureaucrat::signAForm(AForm &AForm)
 {
     try{
-        form.beSigned(*this);
+        AForm.beSigned(*this);
     }
     catch(const std::exception& e){
         std::cerr << e.what() << std::endl;

@@ -1,18 +1,10 @@
 #include "Bureaucrat.hpp"
-#include "AForm.hpp"
+#include "Form.hpp"
 
 int main(void)
 {
-    AForm form("Davide");
-    Bureaucrat b(11);
+    Form form("Davide");
+    Bureaucrat b(10);
 
-    std::cout << form << std::endl;
-    try{
-        form.beSigned(b);
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    std::cout << form << std::endl;
+    b.signForm(form);
 }

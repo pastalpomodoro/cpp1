@@ -1,10 +1,10 @@
 #include"AForm.hpp"
 
-AForm::AForm(void) : _name("Basic_Form"), _signed(false), _sign(0), _exec(100)
+AForm::AForm(void) : _name("Basic_AForm"), _signed(false), _sign(100), _exec(100)
 {
     // std::cout << "AForm Defoault constructor called\n";
 }
-AForm::AForm(std::string name) : _name(name), _signed(false), _sign(0), _exec(100)
+AForm::AForm(std::string name, int sign, int exec) : _name(name), _signed(false), _sign(sign), _exec(exec)
 {
     ;
 }
@@ -24,6 +24,7 @@ AForm &AForm::operator=(const AForm &copy)
     this->_signed = copy._signed;
     return (*this);
 }
+
 std::string AForm::getName(void) const{
     return(this->_name);
 }
@@ -36,6 +37,19 @@ int AForm::getSign(void) const{
 int AForm::getExec(void) const{
     return(this->_exec);
 }
+
+void AForm::beSigned(Bureaucrat b)
+{
+    if (this->_sign >= b.getGrade()){
+        this->_signed = true;
+        std::cout << b.getName() << " signed " << this->_name << std::endl;
+    }
+    else{
+        std::cout << b.getName() << " couldn't sign " << this->_name <<  " because ";
+        throw AForm::GradeTooLowException();
+    }
+}
+
 std::ostream &operator<<(std::ostream &os, const AForm &f)
 {
     os << f.getName() << " ";

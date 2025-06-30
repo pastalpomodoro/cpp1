@@ -11,7 +11,7 @@ class RobotomyRequestForm : public AForm
         RobotomyRequestForm(std::string name);
         ~RobotomyRequestForm(void);
         RobotomyRequestForm &operator=(const RobotomyRequestForm &copy);
-        void f() const;
+        void f();
 };
 std::ostream &operator<<(std::ostream &os, const RobotomyRequestForm &p);
 

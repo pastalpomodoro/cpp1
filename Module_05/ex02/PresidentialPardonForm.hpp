@@ -11,7 +11,7 @@ class PresidentialPardonForm : public AForm
         PresidentialPardonForm(std::string name);
         ~PresidentialPardonForm(void);
         PresidentialPardonForm &operator=(const PresidentialPardonForm &copy);
-        void f() const;
+        void f();
 };
 std::ostream &operator<<(std::ostream &os, const PresidentialPardonForm &p);
 

@@ -11,7 +11,7 @@ class ShrubberyCreationForm : public AForm
         ShrubberyCreationForm(std::string name);
         ~ShrubberyCreationForm(void);
         ShrubberyCreationForm &operator=(const ShrubberyCreationForm &copy);
-        void f() const;
+        void f();
 };
 std::ostream &operator<<(std::ostream &os, const ShrubberyCreationForm &p);
 

@@ -8,7 +8,7 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &cop
 {
     *this = copy;
 }
-PresidentialPardonForm::PresidentialPardonForm(std::string name) : AForm(name)
+PresidentialPardonForm::PresidentialPardonForm(std::string name) : AForm(name, 25, 5)
 {
     ;
 }
@@ -24,7 +24,7 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
     return (*this);  
 }
 
-void PresidentialPardonForm::f() const{;}
+void PresidentialPardonForm::f(){;}
 
 std::ostream &operator<<(std::ostream &os, const PresidentialPardonForm &p)
 {
