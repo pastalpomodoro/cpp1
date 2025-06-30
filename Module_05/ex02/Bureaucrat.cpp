@@ -26,12 +26,12 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &copy)
     this->_name = copy._name;
     return (*this);
 }
-std::string Bureaucrat::getName(void)
+std::string Bureaucrat::getName(void) const
 {
     // std::cout << ", bureaucrat name: " << this->_name;
     return(this->_name);
 }
-int Bureaucrat::getGrade(void)
+int Bureaucrat::getGrade(void) const
 {
     // std::cout << this->_name << ", bureaucrat grade " << this->_grade << ".\n";
     return(this->_grade);
@@ -57,4 +57,18 @@ void Bureaucrat::signAForm(AForm &AForm)
     catch(const std::exception& e){
         std::cerr << e.what() << std::endl;
     }
+}
+void Bureaucrat::executeForm(AForm const &form)
+{
+    try{
+        form.execute(*this);
+    }
+    catch (const std::exception& e){
+        std::cout << e.what() << std::endl;
+    }
+}
+std::ostream &operator<<(std::ostream &os, Bureaucrat const &b)
+{
+    os << b.getName() << ", bureaucrat grade " << b.getGrade();
+    return (os);
 }

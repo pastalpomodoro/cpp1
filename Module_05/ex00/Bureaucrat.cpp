@@ -26,14 +26,12 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &copy)
     this->_name = copy._name;
     return (*this);
 }
-std::string Bureaucrat::getName(void)
+std::string Bureaucrat::getName(void) const
 {
-    std::cout << ", bureaucrat name: " << this->_name;
     return(this->_name);
 }
-int Bureaucrat::getGrade(void)
+int Bureaucrat::getGrade(void) const
 {
-    std::cout << this->_name << ", bureaucrat grade " << this->_grade << ".\n";
     return(this->_grade);
 }
 void Bureaucrat::incrementGrade(int x)
@@ -48,4 +46,9 @@ void Bureaucrat::decrementGrade(int x)
     if (this->_grade - x < 1)
         throw Bureaucrat::GradeTooLowException();
     this->_grade -= x;
+}
+std::ostream &operator<<(std::ostream &os, Bureaucrat const &b)
+{
+    os << b.getName() << ", bureaucrat grade " << b.getGrade();
+    return (os);
 }

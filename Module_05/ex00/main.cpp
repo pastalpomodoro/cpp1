@@ -15,4 +15,5 @@ int main(void)
     {
         std::cerr << e.what() << '\n';
     }
+    std::cout << b << std::endl;
 }
