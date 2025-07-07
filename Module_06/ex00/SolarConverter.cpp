@@ -20,4 +20,7 @@ SolarConverter &SolarConverter::operator=(const SolarConverter &copy){
 
 void SolarConverter::convert(std::string str){
 	std::cout << atoi(str.c_str()) << std::endl;
+	std::streamstring strN(str);
+	double doubleValue;
+	strN >> double
 }
