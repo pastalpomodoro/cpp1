@@ -4,7 +4,7 @@ CC=c++
 FLAG=-Wall -Werror -Wextra -std=c++98
 
 SRC=main.cpp \
-	SolarConverter.cpp
+	ScalarConverter.cpp
 
 OBJ=$(patsubst %.cpp, %.o,$(SRC))
 
