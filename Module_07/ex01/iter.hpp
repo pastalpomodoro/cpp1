@@ -10,4 +10,19 @@ void iter(T *a, int size, Func f)
         f(a[i]);
     }
 }
+template <typename T>
+void upper (T &s){
+    for (int i = 0; s[i]; i++){
+        s[i] -= 32;
+    }
+}
+
+template <typename T>
+void print(T const &x){
+    std::cout << x << " ";
+}
+template <typename T>
+void multi(T &x){
+    x *= 10;
+}
 #endif

@@ -1,20 +1,5 @@
 #include "iter.hpp"
 
-template <typename T>
-void print(T const &x){
-    std::cout << x << " ";
-}
-template <typename T>
-void upper (std::string &s){
-    for (int i = 0; s[i]; i++){
-        s[i] -= 32;
-    }
-}
-template <typename T>
-void multi(int &x){
-    x *= 10;
-}
-
 int main(void)
 {
     int a[] = {1, 2, 3, 4, 5, 6};
