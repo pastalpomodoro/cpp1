@@ -1,4 +1,4 @@
-NAME=ex01
+NAME=ex02
 CC=c++
 FLAG=-Wall -Werror -Wextra -std=c++98 -fsanitize=address -g3
 
