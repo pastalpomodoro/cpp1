@@ -28,6 +28,11 @@ int main()
     // std::cout << d.size() << std::endl;
     
     Array<std::string> b(a, 4);
-    std::cout << b[4] << std::endl;
+    try{
+        std::cout << b[4] << std::endl;
+    }
+    catch(const std::exception& e){
+        std::cout << e.what() << std::endl;
+    }
     delete[] a;
 }
