@@ -1,7 +1,8 @@
 
-NAME=ex02
+NAME=ex00
 CC=c++
 FLAG=-Wall -Werror -Wextra -std=c++98 -fsanitize=address -g3
+
 SRC=main.cpp \
 
 OBJ=$(patsubst %.cpp, %.o,$(SRC))
