@@ -1,6 +1,6 @@
 NAME=ex03
 CC=c++
-FLAG=-Wall -Werror -Wextra -std=c++98
+FLAG=-Wall -Werror -Wextra -std=c++98 -fsanitize=address
 
 SRC=main.cpp \
 	Bureaucrat.cpp \

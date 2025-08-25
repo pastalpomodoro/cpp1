@@ -6,9 +6,9 @@
 
 int main(void){
 	Bureaucrat b(46);
-	RobotomyRequestForm r("Robotomy");
-	ShrubberyCreationForm s("Shruberry");
-	PresidentialPardonForm p("Presidential");
+	RobotomyRequestForm r;
+	ShrubberyCreationForm s;
+	PresidentialPardonForm p;
 	
 
 	std::cout << b <<std::endl << std::endl;

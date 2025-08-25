@@ -32,9 +32,11 @@ AForm *Intern::makeForm(std::string form, std::string target)
 {
 	AForm *(*ff[])(std::string target) = {&maker, &makep, &makes};
 	std::string forms[] = {"robotomy request", "presidential pardon", "shrubbery creation"};
+	std::string formsName[] = {"RobotomyForm", "PresidentialForm", "ShrubberyForm"};
+
 	for (int i = 0; i < 3; i++){
 		if (form == forms[i])
-			return (ff[i](target));
+			return (std::cout << "Intern creates " << formsName[i] << std::endl, ff[i](target));
 	}
 	std::cout << "Aucune form trouve\n";
 	return (NULL);

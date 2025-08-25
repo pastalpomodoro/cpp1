@@ -9,10 +9,10 @@ class Bureaucrat;
 class AForm
 {
     private:
-        std::string _name;
-        bool _signed;
-        int const _sign;
-        int const _exec;
+        const std::string   _name;
+        bool                _signed;
+        const int           _sign;
+        const int           _exec;
     public:
         AForm(void);
         AForm(const AForm &copy);

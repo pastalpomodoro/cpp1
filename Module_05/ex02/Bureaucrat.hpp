@@ -9,12 +9,13 @@ class AForm;
 class Bureaucrat
 {
     private:
-        std::string _name;
+        const std::string _name;
         int _grade;
     public:
         Bureaucrat(void);
         Bureaucrat(const Bureaucrat &copy);
         Bureaucrat(int grade);
+        Bureaucrat(std::string name, int x);
         Bureaucrat &operator=(const Bureaucrat &copy);
         ~Bureaucrat(void);
         std::string getName(void) const;
@@ -36,7 +37,7 @@ class Bureaucrat
         {
             virtual const char *what() const throw()
             {
-                return("Grade Too High Excetpion\n");
+                return("Grade Too Low Excetpion\n");
             } 
         };
 };

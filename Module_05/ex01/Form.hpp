@@ -9,21 +9,23 @@ class Bureaucrat;
 class Form
 {
     private:
-        std::string _name;
-        bool _signed;
-        int const _sign;
-        int const _exec;
+        const std::string   _name;
+        bool                _signed;
+        const int           _sign;
+        const int           _exec;
     public:
         Form(void);
         Form(const Form &copy);
-        Form(std::string name);
+        Form(std::string name, int sign);
         ~Form(void);
         Form &operator=(const Form &copy);
-        std::string getName(void) const;
-        bool getIsSigned(void) const;
-        int getSign(void) const;
-        int getExec(void) const;
-        void beSigned(Bureaucrat b);
+
+        std::string getName(void) const;    
+        bool        getIsSigned(void) const;
+        int         getSign(void) const;
+        int         getExec(void) const;
+        
+        void        beSigned(Bureaucrat b);
 
         class GradeTooHighException : public std::exception
         {

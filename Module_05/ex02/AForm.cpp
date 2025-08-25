@@ -8,9 +8,9 @@ AForm::AForm(std::string name, int sign, int exec) : _name(name), _signed(false)
 {
     ;
 }
-AForm::AForm(const AForm &copy) : _name(copy._name), _signed(copy._signed), _sign(copy._sign), _exec(copy._exec)
+AForm::AForm(const AForm &copy) : _name(copy._name), _sign(copy._sign), _exec(copy._exec)
 {
-    // std::cout << "AForm Defoault constructor called\n";
+    *this = copy;
 }
 AForm::~AForm(void)
 {
@@ -20,7 +20,6 @@ AForm &AForm::operator=(const AForm &copy)
 {
     if (this == &copy)
         return (*this);
-    this->_name = copy._name;
     this->_signed = copy._signed;
     return (*this);
 }
@@ -66,7 +65,7 @@ std::ostream &operator<<(std::ostream &os, const AForm &f)
 {
     os << f.getName() << " ";
     if (f.getIsSigned() == false)
-        os << "Isn't signed ";
+        os << "Isn't signed, need grade " << f.getSign() << " to be signed";
     else
         os << "Is signed ";
     return (os);

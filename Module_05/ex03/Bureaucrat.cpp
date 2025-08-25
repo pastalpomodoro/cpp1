@@ -4,7 +4,7 @@ Bureaucrat::Bureaucrat(void): _name("Lucie"), _grade(12)
 {
     // std::cout << "Bureaucrat default constructor called\n";
 }
-Bureaucrat::Bureaucrat(const Bureaucrat &copy)
+Bureaucrat::Bureaucrat(const Bureaucrat &copy): _name(copy._name)
 {
     // std::cout << "Bureaucrat assignement constructor called\n";
     *this = copy;
@@ -23,7 +23,6 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &copy)
     if (this == &copy)
         return (*this);
     this->_grade = copy._grade;
-    this->_name = copy._name;
     return (*this);
 }
 std::string Bureaucrat::getName(void) const
@@ -38,16 +37,16 @@ int Bureaucrat::getGrade(void) const
 }
 void Bureaucrat::incrementGrade(int x)
 {
-    if (this->_grade + x > 150)
+    if (this->_grade - x < 1)
         throw Bureaucrat::GradeTooHighException();
-    this->_grade += x;
+    this->_grade -= x;
 }
 
 void Bureaucrat::decrementGrade(int x)
 {
-    if (this->_grade - x < 1)
+    if (this->_grade + x > 150)
         throw Bureaucrat::GradeTooLowException();
-    this->_grade -= x;
+    this->_grade += x;
 }
 void Bureaucrat::signAForm(AForm &AForm)
 {

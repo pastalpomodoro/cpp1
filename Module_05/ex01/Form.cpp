@@ -1,16 +1,16 @@
 #include"Form.hpp"
 
-Form::Form(void) : _name("Basic_Form"), _signed(false), _sign(100), _exec(100)
+Form::Form(void) : _name("Basic_Form"), _signed(false), _sign(150), _exec(150)
 {
     // std::cout << "Form Defoault constructor called\n";
 }
-Form::Form(std::string name) : _name(name), _signed(false), _sign(100), _exec(100)
+Form::Form(std::string name, int sign) : _name(name), _signed(false), _sign(sign), _exec(150)
 {
     ;
 }
-Form::Form(const Form &copy) : _name(copy._name), _signed(copy._signed), _sign(copy._sign), _exec(copy._exec)
+Form::Form(const Form &copy) : _name(copy._name), _sign(copy._sign), _exec(copy._exec)
 {
-    // std::cout << "Form Defoault constructor called\n";
+    *this = copy;
 }
 Form::~Form(void)
 {
@@ -20,7 +20,6 @@ Form &Form::operator=(const Form &copy)
 {
     if (this == &copy)
         return (*this);
-    this->_name = copy._name;
     this->_signed = copy._signed;
     return (*this);
 }
@@ -54,7 +53,7 @@ std::ostream &operator<<(std::ostream &os, const Form &f)
 {
     os << f.getName() << " ";
     if (f.getIsSigned() == false)
-        os << "Isn't signed ";
+        os << "Isn't signed, need grade " << f.getSign() << " to be signed";
     else
         os << "Is signed ";
     return (os);

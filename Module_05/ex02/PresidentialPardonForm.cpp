@@ -1,6 +1,6 @@
 #include"PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm(void) : AForm()
+PresidentialPardonForm::PresidentialPardonForm(void) : AForm("Presidential", 25, 5)
 {
     ;
 }

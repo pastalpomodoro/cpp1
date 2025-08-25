@@ -28,4 +28,8 @@ int main(void){
 	AForm* rrf;
 	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
 	delete rrf;
+	rrf = someRandomIntern.makeForm("presidential pardon", "Bender");
+	delete rrf;
+	rrf = someRandomIntern.makeForm("shrubbery creation", "Bender");
+	delete rrf;
 }
