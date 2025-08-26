@@ -22,7 +22,5 @@ class ScalarConverter
 		static void		printFloat(float str);
 		static void		printDouble(double str);
 		static void		printSimbol(std::string str);
-		
-		static bool		isCastable(std::string str);
 };
 #endif

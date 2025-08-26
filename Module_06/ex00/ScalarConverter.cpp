@@ -18,15 +18,6 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &copy){
 	return (*this);
 }
 
-bool ScalarConverter::isCastable(std::string str){
-	// for (int i = 0; str[i]; i++){
-		
-	// }
-	return false;
-	std::cout << str << std::endl;
-	;
-}
-
 void	ScalarConverter::printChar(char str){
 	std::cout << "char: " << str << std::endl;
 	std::cout << "int: " << static_cast<int>(str) << std::endl;
@@ -37,7 +28,7 @@ void	ScalarConverter::printChar(char str){
 }
 
 void	ScalarConverter::printInt(int str){
-	if (str > 31 && str != 127)
+	if (str > 31 && str < 127)
 		std::cout << "char: " << static_cast<char>(str) << std::endl;
 	else
 		std::cout << "char: Non displayable\n";
@@ -49,7 +40,7 @@ void	ScalarConverter::printInt(int str){
 }
 
 void	ScalarConverter::printFloat(float str){
-	if (str > 31 && str != 127)
+	if (str > 31 && str < 127)
 		std::cout << "char: " << static_cast<char>(str) << std::endl;
 	else
 		std::cout << "char: Non displayable\n";
@@ -61,7 +52,7 @@ void	ScalarConverter::printFloat(float str){
 }
 
 void	ScalarConverter::printDouble(double str){
-	if (str > 31 && str != 127)
+	if (str > 31 && str < 127)
 		std::cout << "char: " << static_cast<char>(str) << std::endl;
 	else
 		std::cout << "char: Non displayable\n";
@@ -83,6 +74,7 @@ void	ScalarConverter::printSimbol(std::string str){
 
 void	ScalarConverter::convert(std::string str){
 	char *endptr;
+	// bool neg = false;
 
 	if (str == "nan" || str == "nanf" || str == "+inf"
 		|| str == "+inff" || str == "-inf" || str == "-inff")
@@ -100,13 +92,13 @@ void	ScalarConverter::convert(std::string str){
 	errno = 0;
 	endptr = NULL;
 	float f = std::strtof(str.c_str(), &endptr);
-	if (endptr[0] == '\0' && errno != ERANGE && f <= FLT_MAX && f >= FLT_MIN)
+	if (endptr[0] == '\0' && errno != ERANGE && f <= FLT_MAX && f >= -FLT_MAX)
 		return printFloat(f);
 
 	errno = 0;
 	endptr = NULL;
 	double d = std::strtod(str.c_str(), &endptr);
-	if (endptr[0] == '\0' && errno != ERANGE && d >= DBL_MIN && f <= DBL_MAX)
+	if (endptr[0] == '\0' && errno != ERANGE)
 		return printDouble(d);
 
 	std::cout << "-------------------------------------\n";	
