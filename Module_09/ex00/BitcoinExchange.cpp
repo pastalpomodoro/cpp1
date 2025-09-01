@@ -1,14 +1,159 @@
 #include"BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange(void){;}
+BitcoinExchange::BitcoinExchange(char *av) : input(av), date(""), num(0)
+{
+    std::ifstream       file("data.csv");
+    std::string         temp = "";
+    double              num;
+    if (!file.is_open()){
+        std::cout << "Error opening the file\n";
+        return;
+    }
+    for (int i = 0; std::getline(file, temp); i++){
+        if (i != 0)
+        {    
+            std::string         temp1 = "";
+            std::istringstream  ill(temp);
+            std::getline(ill, temp, ',');
+            std::getline(ill, temp1, ',');
+            std::istringstream  numTemp(temp1);
+            numTemp >> num;
+            this->btc[temp] = num;
+        }
+    }
+    file.close();
+    // for (std::map<std::string, double>::iterator it = this->btc.begin(); it != this->btc.end(); it++){
+        // std::cout << it->first << " " << it->second << std::endl;
+    // }
+}
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &copy)
 {
     *this = copy;
 }
 BitcoinExchange::~BitcoinExchange(void){;}
+
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &copy){
     if (this == &copy)
         return (*this);
     return (*this);
+}
+
+bool    BitcoinExchange::checkDate(){
+    if (this->date[this->date.length() - 1] != ' ')
+        return (false);
+    this->date = this->date.substr(0, this->date.length() - 1);
+    std::istringstream  ill(this->date);
+    std::string         temp = "";
+
+    for (int i = 0; std::getline(ill, temp, '-'); i++){
+        if (i > 2)
+            return (false);
+        for (int j = 0; temp[j]; j++){
+            if (!isdigit(temp[j]))
+                return (false);
+        }
+        std::istringstream  numTemp(temp);
+        int                 num;
+        numTemp >> num;
+        if ((i == 1 && num > 12) || (i == 2 && num > 31))
+            return (false);
+    }
+    return (true);
+}
+
+bool    BitcoinExchange::checkNum(std::string temp1, std::string line){
+    
+    if (temp1.length() <= 1 || temp1[0] != ' ')
+        return (std::cout << "error: bad input => " << line << std::endl, false);
+    if (temp1[1] == '-')
+        return (std::cout << "error: not a positive number.\n", false);
+    std::istringstream  numTemp(&temp1[1]);
+    numTemp >> this->num;
+    // std::cout << "NUM: " << num << std::endl;
+    if (this->num > 1000)
+        return (std::cout << "Error: too large a number.\n", false);
+    // std::cout << this->date << " " << this->num << std::endl;
+    return (true);
+}
+
+void    BitcoinExchange::setDates(){
+    std::string temp1 = "";
+    std::istringstream  inDate(this->date);
+    
+    for (int i = 0; i < 3; i++){
+        std::getline(inDate, temp1, '-');
+        std::istringstream  ill(temp1);
+        if (i == 0)
+            ill >> this->inYear;
+        else if (i == 1)
+            ill >> this->inMonth;
+        else
+            ill >> this->inDay;
+    }
+}
+
+bool    BitcoinExchange::isSmallerDate(std::string date)
+{
+	int btcYear;
+	int btcMonth;
+	int btcDay;
+	std::string temp;
+	std::istringstream ill(date);
+	std::getline(ill, temp, '-');
+	std::istringstream t(temp);
+	t >> btcYear;
+	std::getline(ill, temp, '-');
+	std::istringstream t1(temp);
+	t1 >> btcMonth;
+	std::getline(ill, temp, '-');
+	std::istringstream t2(temp);
+	t2 >> btcDay;
+	// std::cout << btcYear << " " << btcMonth << " " << btcDay << std::endl;
+	if (this->inYear > btcYear)
+		return (false);
+	if (this->inMonth > btcMonth)
+		return (false);
+	if (this->inDay > btcDay)
+		return (false);
+	return (true);
+}
+
+bool    BitcoinExchange::findDate(){
+    this->setDates();
+    std::cout << "YEAR: "  << this->inYear << " MOUNTH: " << this->inMonth << " DAY: " << this->inDay << std::endl;
+    std::string temp;
+
+    if (this->btc[this->date])
+        return (std::cout << "EASY CASE: " << this->date << std::endl, true);
+    std::map<std::string, double>::iterator it = this->btc.begin();
+    while (it != this->btc.end()){
+        if (isSmallerDate(it->first))
+            return (std::cout << "FOUND IT: "<< it->first << " | " << this->date << " | "<< temp << std::endl, true);
+        temp = it->first;
+        ++it;
+    }
+    return (true);
+}
+void    BitcoinExchange::finder()
+{
+    std::string line;
+
+    std::getline(this->input, line);
+    while (std::getline(this->input, line))
+    {
+        if (line == "")
+            continue;
+        std::istringstream  ill(line);
+        std::string         temp1;
+        std::getline(ill, this->date, '|');
+        if (!this->checkDate()){
+            std::cout << "error: bad input => " << line << std::endl;
+            continue;
+        }
+        std::getline(ill, temp1, '|');
+        if (!this->checkNum(temp1, line))
+            continue;
+        this->findDate();
+    }
 }
