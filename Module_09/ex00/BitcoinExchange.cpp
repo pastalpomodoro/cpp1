@@ -98,6 +98,9 @@ bool    BitcoinExchange::isSmallerDate(std::string date)
 	int btcYear;
 	int btcMonth;
 	int btcDay;
+
+    if (date == "")
+        return (true);
 	std::string temp;
 	std::istringstream ill(date);
 	std::getline(ill, temp, '-');
@@ -109,31 +112,32 @@ bool    BitcoinExchange::isSmallerDate(std::string date)
 	std::getline(ill, temp, '-');
 	std::istringstream t2(temp);
 	t2 >> btcDay;
-	// std::cout << btcYear << " " << btcMonth << " " << btcDay << std::endl;
 	if (this->inYear > btcYear)
 		return (false);
-	if (this->inMonth > btcMonth)
+	if (this->inMonth > btcMonth && this->inYear == btcYear)
 		return (false);
-	if (this->inDay > btcDay)
+	if (this->inDay > btcDay && this->inYear == btcYear && this->inMonth == btcMonth)
 		return (false);
 	return (true);
 }
 
 bool    BitcoinExchange::findDate(){
     this->setDates();
-    std::cout << "YEAR: "  << this->inYear << " MOUNTH: " << this->inMonth << " DAY: " << this->inDay << std::endl;
+    // std::cout << "YEAR: "  << this->inYear << " MOUNTH: " << this->inMonth << " DAY: " << this->inDay << std::endl;
     std::string temp;
 
-    if (this->btc[this->date])
-        return (std::cout << "EASY CASE: " << this->date << std::endl, true);
+    if (this->btc.find(this->date) != this->btc.end())
+        return (std::cout << this->date << " => " << this->num << " = " << this->btc[this->date] * this->num << std::endl, true);
     std::map<std::string, double>::iterator it = this->btc.begin();
     while (it != this->btc.end()){
-        if (isSmallerDate(it->first))
-            return (std::cout << "FOUND IT: "<< it->first << " | " << this->date << " | "<< temp << std::endl, true);
+        if (isSmallerDate(it->first) && !isSmallerDate(temp)){
+            std::cout << this->date << " => " << this->num << " = " << this->num * this->btc[it->first] << std::endl;
+            return (true);
+        }
         temp = it->first;
         ++it;
     }
-    return (true);
+    return (false);
 }
 void    BitcoinExchange::finder()
 {
@@ -154,6 +158,7 @@ void    BitcoinExchange::finder()
         std::getline(ill, temp1, '|');
         if (!this->checkNum(temp1, line))
             continue;
-        this->findDate();
+        if (!this->findDate())
+            std::cout << "error: bad input => " << line << std::endl;
     }
 }
