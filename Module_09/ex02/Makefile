@@ -1,10 +1,10 @@
 
-NAME=RPN
+NAME=PmergeMe
 CC=c++
-FLAG=-Wall -Werror -Wextra -std=c++98 -fsanitize=address -g3
+FLAG=-Wall -Werror -Wextra -std=c++98 -g3
 
 SRC=main.cpp \
-	RPN.cpp
+	PmergeMe.cpp
 
 OBJ=$(patsubst %.cpp, %.o,$(SRC))
 

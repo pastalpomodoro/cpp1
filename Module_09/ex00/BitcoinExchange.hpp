@@ -24,6 +24,7 @@ class BitcoinExchange
         BitcoinExchange& operator=(const BitcoinExchange &copy);
 
         void    finder();
+        bool    isBissextile();
         bool    checkDate();
         bool    checkNum(std::string temp1, std::string line);
         bool    findDate();

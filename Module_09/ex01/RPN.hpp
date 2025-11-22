@@ -2,24 +2,23 @@
 #define RPN_HPP
 
 #include<iostream>
-#include<deque>
+#include<ostream>
+#include<stack>
 #include<sstream>
 
 class RPN
 {
     private:
-        std::deque<int>         _numDeque;
-        std::deque<int>         _index;
-        std::deque<std::string> _strDeque;
-        bool                    _status;
+        std::stack<int>  _stack;
     public:
         RPN(void);
-        RPN(std::string av);
         RPN(const RPN &copy);
         ~RPN(void);
         RPN& operator=(const RPN &copy);
 
-        void calculator();
+        int     calcul(int a, int b, std::string token);
+        bool    isOperator(std::string token);
+        void    calculator(std::string line);
 };
 
 #endif

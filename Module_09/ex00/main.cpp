@@ -6,7 +6,12 @@ int main(int ac, char **av){
 		std::cerr << "./btc <file>" << std::endl;
 		return (1);
 	}
-	BitcoinExchange btc(av[1]);
+	try{
+		BitcoinExchange btc(av[1]);
+		btc.finder();
+	}
+	catch(const std::exception &e){
+		std::cerr << e.what() << std::endl;
+	}
 
-	btc.finder();
 }

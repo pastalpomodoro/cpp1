@@ -5,10 +5,8 @@ BitcoinExchange::BitcoinExchange(char *av) : input(av), date(""), num(0)
     std::ifstream       file("data.csv");
     std::string         temp = "";
     double              num;
-    if (!file.is_open()){
-        std::cout << "Error opening the file\n";
-        return;
-    }
+    if (!file.is_open())
+        throw (std::runtime_error("Error opening the csv file"));
     for (int i = 0; std::getline(file, temp); i++){
         if (i != 0)
         {    
@@ -36,6 +34,12 @@ BitcoinExchange::~BitcoinExchange(void){;}
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &copy){
     if (this == &copy)
         return (*this);
+    this->btc = copy.btc;
+    this->date = copy.date;
+    this->num = copy.num;
+    this->inYear = copy.inYear;
+    this->inMonth = copy.inMonth;
+    this->inDay = copy.inDay;
     return (*this);
 }
 
@@ -93,6 +97,33 @@ void    BitcoinExchange::setDates(){
     }
 }
 
+
+bool    BitcoinExchange::isBissextile(){
+    //verificare che il mese sia tra 01 et 12
+    //verificare per gli bissextiles
+    //verificare per i mesi che ahnno meno giorni che il giorno non sia troppo grande
+    // std::cout << "MONTH: " << this->inMonth << " DAY: " << this->inDay << " YEAR: " << this->inYear << std::endl;
+    if (this->inYear % 4 == 0 && this->inYear % 100 != 0 && this->inMonth == 2 && this->inDay > 29)
+        return false;
+    if ((this->inMonth == 1 || 
+            this->inMonth == 3 || this->inMonth == 5 || 
+            this->inMonth == 7 || this->inMonth == 8 || 
+            this->inMonth == 10 || this->inMonth == 12)
+            && this->inDay > 31)
+        return false;
+    if ((this->inMonth == 4 || 
+            this->inMonth == 6 || 
+            this->inMonth == 9 ||
+            this->inMonth == 11)
+            && this->inDay > 30)
+        return false;
+    if (this->inMonth == 2 && this->inDay > 28)
+        return false;
+    if (this->inMonth <= 0 || this->inDay > 12)
+        return false;
+    return true;
+}
+
 bool    BitcoinExchange::isSmallerDate(std::string date)
 {
 	int btcYear;
@@ -100,8 +131,8 @@ bool    BitcoinExchange::isSmallerDate(std::string date)
 	int btcDay;
 
     if (date == "")
-        return (true);
-	std::string temp;
+        return (true);	
+    std::string temp;
 	std::istringstream ill(date);
 	std::getline(ill, temp, '-');
 	std::istringstream t(temp);
@@ -123,6 +154,8 @@ bool    BitcoinExchange::isSmallerDate(std::string date)
 
 bool    BitcoinExchange::findDate(){
     this->setDates();
+    if (!isBissextile())
+        return (false);
     // std::cout << "YEAR: "  << this->inYear << " MOUNTH: " << this->inMonth << " DAY: " << this->inDay << std::endl;
     std::string temp;
 
